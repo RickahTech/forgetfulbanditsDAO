@@ -102,18 +102,18 @@ export function Shop({ currentMember }: ShopProps) {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">DAO Clothing Store</h1>
-            <p className="text-slate-400">Earn governance tokens with every purchase</p>
+            <h1 className="text-4xl font-bold text-white mb-2">Forgetful Bandits Shop</h1>
+            <p className="text-slate-400">Earn $FGB tokens with every purchase</p>
           </div>
 
           <button
             onClick={() => setShowCart(true)}
-            className="relative bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+            className="relative bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
           >
             <ShoppingBag size={20} />
             Cart
             {cartItemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-pink-900 border-2 border-pink-400 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
                 {cartItemCount}
               </span>
             )}
@@ -132,7 +132,7 @@ export function Shop({ currentMember }: ShopProps) {
                 onClick={() => setSelectedCategory(category.value)}
                 className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
                   selectedCategory === category.value
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-pink-600 text-white'
                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                 }`}
               >

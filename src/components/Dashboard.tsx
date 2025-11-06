@@ -76,45 +76,45 @@ export function Dashboard({ currentMember, onUpdateMember }: DashboardProps) {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">Crypto DAO</h1>
-              <p className="text-slate-400">Decentralized governance for your community</p>
+              <h1 className="text-4xl font-bold text-white mb-2">Forgetful Bandits DAO</h1>
+              <p className="text-slate-400">Collective governance through beautiful chaos</p>
             </div>
             <button
               onClick={() => setShowCreateProposal(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
             >
               New Proposal
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+            <div className="bg-slate-800 rounded-lg p-6 border border-pink-900/50">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-slate-400 text-sm mb-1">Total Members</p>
+                  <p className="text-slate-400 text-sm mb-1">Total Bandits</p>
                   <p className="text-3xl font-bold text-white">{members.length}</p>
                 </div>
-                <Users className="text-blue-500" size={32} />
+                <Users className="text-pink-500" size={32} />
               </div>
             </div>
 
-            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+            <div className="bg-slate-800 rounded-lg p-6 border border-pink-900/50">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-slate-400 text-sm mb-1">Active Proposals</p>
                   <p className="text-3xl font-bold text-white">{activeProposals}</p>
                 </div>
-                <Vote className="text-green-500" size={32} />
+                <Vote className="text-pink-400" size={32} />
               </div>
             </div>
 
-            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+            <div className="bg-slate-800 rounded-lg p-6 border border-pink-900/50">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-slate-400 text-sm mb-1">Total Tokens</p>
+                  <p className="text-slate-400 text-sm mb-1">Total $FGB</p>
                   <p className="text-3xl font-bold text-white">{totalTokens.toLocaleString()}</p>
                 </div>
-                <TrendingUp className="text-amber-500" size={32} />
+                <TrendingUp className="text-pink-500" size={32} />
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export function Dashboard({ currentMember, onUpdateMember }: DashboardProps) {
               onClick={() => setActiveTab('proposals')}
               className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
                 activeTab === 'proposals'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-pink-600 text-white'
                   : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
               }`}
             >
@@ -134,11 +134,11 @@ export function Dashboard({ currentMember, onUpdateMember }: DashboardProps) {
               onClick={() => setActiveTab('members')}
               className={`px-6 py-2 rounded-lg font-semibold transition-colors ${
                 activeTab === 'members'
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-pink-600 text-white'
                   : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
               }`}
             >
-              Members
+              Bandits
             </button>
           </div>
         </div>

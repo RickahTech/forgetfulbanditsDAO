@@ -120,7 +120,7 @@ export function ProposalCard({ proposal, onVoteCast, currentMember }: ProposalCa
   };
 
   return (
-    <div className="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden hover:border-slate-600 transition-colors">
+    <div className="bg-slate-800 rounded-lg border border-pink-900/50 overflow-hidden hover:border-pink-700/50 transition-colors">
       <div className="p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">

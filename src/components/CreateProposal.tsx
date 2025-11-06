@@ -80,7 +80,7 @@ export function CreateProposal({ onClose, onCreated, currentMember }: CreateProp
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-pink-500"
               placeholder="Enter proposal title"
               required
             />
@@ -93,7 +93,7 @@ export function CreateProposal({ onClose, onCreated, currentMember }: CreateProp
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 h-40 resize-none"
+              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-pink-500 h-40 resize-none"
               placeholder="Describe your proposal in detail"
               required
             />
@@ -107,7 +107,7 @@ export function CreateProposal({ onClose, onCreated, currentMember }: CreateProp
             <select
               value={votingDays}
               onChange={(e) => setVotingDays(Number(e.target.value))}
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-pink-500"
             >
               <option value={3}>3 days</option>
               <option value={7}>7 days</option>
@@ -120,7 +120,7 @@ export function CreateProposal({ onClose, onCreated, currentMember }: CreateProp
             <button
               type="submit"
               disabled={submitting}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 text-white py-3 rounded-lg font-semibold transition-colors"
+              className="flex-1 bg-pink-600 hover:bg-pink-700 disabled:bg-pink-800 text-white py-3 rounded-lg font-semibold transition-colors"
             >
               {submitting ? 'Creating...' : 'Create Proposal'}
             </button>

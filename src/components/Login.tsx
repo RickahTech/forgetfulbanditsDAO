@@ -39,13 +39,15 @@ export function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
-      <div className="bg-slate-800 rounded-lg border border-slate-700 p-8 max-w-md w-full">
+      <div className="bg-slate-800 rounded-lg border border-pink-900/50 p-8 max-w-md w-full">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <LogIn size={32} className="text-white" />
-          </div>
-          <h2 className="text-3xl font-bold text-white mb-2">Welcome to DAO</h2>
-          <p className="text-slate-400">Connect your account to get started</p>
+          <img
+            src="/4GB-SYM-LOGO.png"
+            alt="Forgetful Bandits"
+            className="w-20 h-20 mx-auto mb-4"
+          />
+          <h2 className="text-3xl font-bold text-white mb-2">Welcome Bandit</h2>
+          <p className="text-slate-400">Connect to join the collective chaos</p>
         </div>
 
         {error && (
@@ -58,7 +60,7 @@ export function Login() {
           <div className="space-y-4">
             <button
               onClick={() => setLoginMode('metamask')}
-              className="w-full bg-orange-600 hover:bg-orange-700 text-white py-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-3"
+              className="w-full bg-pink-600 hover:bg-pink-700 text-white py-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-3"
             >
               <Wallet size={24} />
               Connect with MetaMask
@@ -75,7 +77,7 @@ export function Login() {
 
             <button
               onClick={() => setLoginMode('email')}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-3"
+              className="w-full bg-slate-700 hover:bg-slate-600 text-white py-4 rounded-lg font-semibold transition-colors flex items-center justify-center gap-3"
             >
               <Mail size={24} />
               Continue with Email
@@ -101,7 +103,7 @@ export function Login() {
             <button
               onClick={handleMetaMaskLogin}
               disabled={loading}
-              className="w-full bg-orange-600 hover:bg-orange-700 disabled:bg-orange-800 text-white py-3 rounded-lg font-semibold transition-colors"
+              className="w-full bg-pink-600 hover:bg-pink-700 disabled:bg-pink-800 text-white py-3 rounded-lg font-semibold transition-colors"
             >
               {loading ? 'Connecting...' : 'Connect MetaMask'}
             </button>
@@ -123,7 +125,7 @@ export function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-pink-500"
                 placeholder="your@email.com"
                 required
               />
@@ -137,7 +139,7 @@ export function Login() {
                 type="text"
                 value={walletAddress}
                 onChange={(e) => setWalletAddress(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 font-mono"
+                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-pink-500 font-mono"
                 placeholder="0x... (optional)"
               />
               <p className="text-slate-500 text-xs mt-2">
@@ -148,7 +150,7 @@ export function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-800 text-white py-3 rounded-lg font-semibold transition-colors"
+              className="w-full bg-pink-600 hover:bg-pink-700 disabled:bg-pink-800 text-white py-3 rounded-lg font-semibold transition-colors"
             >
               {loading ? 'Signing in...' : 'Sign In / Sign Up'}
             </button>
@@ -164,7 +166,7 @@ export function Login() {
         )}
 
         <div className="mt-6 text-center text-slate-400 text-sm">
-          <p>New members automatically receive 100 governance tokens</p>
+          <p>New bandits automatically receive 100 $FGB tokens</p>
         </div>
       </div>
     </div>

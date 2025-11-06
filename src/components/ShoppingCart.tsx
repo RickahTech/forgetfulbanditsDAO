@@ -113,7 +113,7 @@ export function ShoppingCart({
 
     onClearCart();
     setProcessing(false);
-    alert(`Order placed successfully! You earned ${totalTokens} governance tokens!`);
+    alert(`Order placed successfully! You earned ${totalTokens} $FGB tokens!`);
     onClose();
   };
 
@@ -140,7 +140,7 @@ export function ShoppingCart({
               <p className="text-slate-400 text-lg">Your cart is empty</p>
               <button
                 onClick={onClose}
-                className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                className="mt-4 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
               >
                 Continue Shopping
               </button>
@@ -181,9 +181,9 @@ export function ShoppingCart({
                         <span className="text-green-400 font-semibold">
                           ${(item.product.price * item.quantity).toFixed(2)}
                         </span>
-                        <span className="text-amber-400 text-sm flex items-center gap-1">
+                        <span className="text-pink-400 text-sm flex items-center gap-1">
                           <Coins size={14} />
-                          +{item.product.tokens_reward * item.quantity}
+                          +{item.product.tokens_reward * item.quantity} $FGB
                         </span>
                       </div>
                     </div>
@@ -203,10 +203,10 @@ export function ShoppingCart({
                   <span>Subtotal:</span>
                   <span className="font-semibold">${totalAmount.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-amber-400 mb-4">
+                <div className="flex justify-between text-pink-400 mb-4">
                   <span className="flex items-center gap-2">
                     <Coins size={18} />
-                    Tokens to earn:
+                    $FGB to earn:
                   </span>
                   <span className="font-bold text-xl">{totalTokens}</span>
                 </div>
@@ -219,7 +219,7 @@ export function ShoppingCart({
               {!showCheckout ? (
                 <button
                   onClick={() => setShowCheckout(true)}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors"
+                  className="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-semibold transition-colors"
                 >
                   Proceed to Checkout
                 </button>
@@ -232,7 +232,7 @@ export function ShoppingCart({
                     <textarea
                       value={shippingAddress}
                       onChange={(e) => setShippingAddress(e.target.value)}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 h-24 resize-none"
+                      className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-pink-500 h-24 resize-none"
                       placeholder="Enter your full shipping address"
                       required
                     />

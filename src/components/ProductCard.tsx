@@ -17,7 +17,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden hover:border-slate-600 transition-colors">
+    <div className="bg-slate-800 rounded-lg border border-pink-900/50 overflow-hidden hover:border-pink-700/50 transition-colors">
       <div className="aspect-square bg-slate-900 overflow-hidden">
         <img
           src={product.image_url}
@@ -35,10 +35,10 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         <p className="text-slate-400 text-sm mb-4 leading-relaxed">{product.description}</p>
 
         <div className="flex items-center gap-4 mb-4">
-          <div className="flex items-center gap-2 bg-amber-900 bg-opacity-30 px-3 py-1 rounded-full border border-amber-700">
-            <Coins size={16} className="text-amber-500" />
-            <span className="text-amber-400 font-semibold text-sm">
-              +{product.tokens_reward} tokens
+          <div className="flex items-center gap-2 bg-pink-900 bg-opacity-30 px-3 py-1 rounded-full border border-pink-700">
+            <Coins size={16} className="text-pink-500" />
+            <span className="text-pink-400 font-semibold text-sm">
+              +{product.tokens_reward} $FGB
             </span>
           </div>
 
@@ -57,7 +57,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
                 onClick={() => setSelectedSize(size)}
                 className={`flex-1 py-2 rounded-lg font-semibold transition-colors ${
                   selectedSize === size
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-pink-600 text-white'
                     : 'bg-slate-700 text-slate-400 hover:bg-slate-600'
                 }`}
               >
@@ -75,14 +75,14 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
             max={product.stock_quantity}
             value={quantity}
             onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pink-500"
           />
         </div>
 
         <button
           onClick={handleAddToCart}
           disabled={product.stock_quantity === 0}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:text-slate-500 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-pink-600 hover:bg-pink-700 disabled:bg-slate-700 disabled:text-slate-500 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
         >
           <ShoppingCart size={20} />
           {product.stock_quantity > 0 ? 'Add to Cart' : 'Out of Stock'}
