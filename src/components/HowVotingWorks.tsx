@@ -168,17 +168,28 @@ export function HowVotingWorks() {
 
         <div className="bg-gradient-to-r from-pink-900/30 to-slate-800 rounded-lg p-8 border border-pink-700/50">
           <h2 className="text-2xl font-bold text-white mb-4 text-center">
-            Earning Tokens Without Crypto
+            Two Ways to Participate
           </h2>
-          <p className="text-slate-300 text-center leading-relaxed max-w-3xl mx-auto mb-4">
-            Don't have crypto? No problem! You can participate in our DAO by purchasing clothing and merchandise
-            from our shop. For every £1 you spend, you earn 1 $FGBNDT token, which gives you voting power in the DAO.
-          </p>
-          <p className="text-slate-300 text-center leading-relaxed max-w-3xl mx-auto">
-            This system allows non-crypto users to support our Alzheimer's and Dementia charity mission while
-            gaining a voice in how funds are allocated. Buy merchandise you love, earn tokens, and help decide
-            which projects we pursue—all without needing a cryptocurrency wallet or technical knowledge.
-          </p>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="bg-slate-900/50 rounded-lg p-6">
+              <h3 className="text-xl font-bold text-white mb-3">For Non-Crypto Users</h3>
+              <p className="text-slate-300 leading-relaxed">
+                Don't have crypto? No problem! Purchase clothing and merchandise from our shop.
+                For every £1 you spend, you earn 1 $FGBNDT token, which gives you voting power in the DAO.
+                Buy merchandise you love, earn tokens, and help decide which projects we pursue—all without
+                needing a cryptocurrency wallet or technical knowledge.
+              </p>
+            </div>
+            <div className="bg-slate-900/50 rounded-lg p-6">
+              <h3 className="text-xl font-bold text-white mb-3">For Crypto Users</h3>
+              <p className="text-slate-300 leading-relaxed">
+                Already in crypto? You can acquire full $FGBNDT tokens directly through blockchain transactions.
+                These tokens work exactly the same way—giving you voting power in the DAO to support our
+                Alzheimer's and Dementia charity mission. Both paths lead to the same goal: making a difference
+                through democratic decision-making.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
