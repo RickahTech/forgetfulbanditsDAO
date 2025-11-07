@@ -7,12 +7,13 @@ import { Login } from './components/Login';
 import { Manifesto } from './components/Manifesto';
 import { AdminPanel } from './components/AdminPanel';
 import { HowVotingWorks } from './components/HowVotingWorks';
-import { Vote, ShoppingBag, Package, Coins, LogOut, User, ScrollText, Wallet, Settings, Info } from 'lucide-react';
+import { Vote, ShoppingBag, Package, Coins, LogOut, User, ScrollText, Wallet, Settings, Info, ChevronDown, UserCircle } from 'lucide-react';
 
 function AppContent() {
   const { currentMember, isLoading, logout, refreshMember } = useAuth();
   const [activeView, setActiveView] = useState<'shop' | 'manifesto' | 'dao' | 'orders' | 'admin' | 'how-voting'>('shop');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showMembershipMenu, setShowMembershipMenu] = useState(false);
   const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
   const [metaMaskAddress, setMetaMaskAddress] = useState<string | null>(null);
 
@@ -98,50 +99,66 @@ function AppContent() {
                   <ScrollText size={16} />
                   Manifesto
                 </button>
-                <button
-                  onClick={() => setActiveView('how-voting')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
-                    activeView === 'how-voting'
-                      ? 'bg-pink-600 text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                >
-                  <Info size={16} />
-                  How Voting Works
-                </button>
-                <button
-                  onClick={() => setActiveView('dao')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
-                    activeView === 'dao'
-                      ? 'bg-pink-600 text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                >
-                  <Vote size={16} />
-                  Governance
-                </button>
-                <button
-                  onClick={() => setActiveView('orders')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
-                    activeView === 'orders'
-                      ? 'bg-pink-600 text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                >
-                  <Package size={16} />
-                  Orders
-                </button>
-                <button
-                  onClick={() => setActiveView('admin')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
-                    activeView === 'admin'
-                      ? 'bg-pink-600 text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                >
-                  <Settings size={16} />
-                  Admin
-                </button>
+
+                <div className="relative">
+                  <button
+                    onClick={() => setShowMembershipMenu(!showMembershipMenu)}
+                    className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                      ['how-voting', 'dao', 'orders', 'admin'].includes(activeView)
+                        ? 'bg-pink-600 text-white'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    }`}
+                  >
+                    <UserCircle size={16} />
+                    Membership
+                    <ChevronDown size={14} />
+                  </button>
+
+                  {showMembershipMenu && (
+                    <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg border border-slate-300 shadow-lg z-50">
+                      <button
+                        onClick={() => {
+                          setActiveView('how-voting');
+                          setShowMembershipMenu(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm rounded-t-lg"
+                      >
+                        <Info size={16} />
+                        How Voting Works
+                      </button>
+                      <button
+                        onClick={() => {
+                          setActiveView('dao');
+                          setShowMembershipMenu(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm"
+                      >
+                        <Vote size={16} />
+                        Governance
+                      </button>
+                      <button
+                        onClick={() => {
+                          setActiveView('orders');
+                          setShowMembershipMenu(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm"
+                      >
+                        <Package size={16} />
+                        My Orders
+                      </button>
+                      <button
+                        onClick={() => {
+                          setActiveView('admin');
+                          setShowMembershipMenu(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm rounded-b-lg"
+                      >
+                        <Settings size={16} />
+                        Admin Panel
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
