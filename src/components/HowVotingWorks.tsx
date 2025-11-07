@@ -168,13 +168,16 @@ export function HowVotingWorks() {
 
         <div className="bg-gradient-to-r from-pink-900/30 to-slate-800 rounded-lg p-8 border border-pink-700/50">
           <h2 className="text-2xl font-bold text-white mb-4 text-center">
-            Why Token-Weighted Voting?
+            Earning Tokens Without Crypto
           </h2>
+          <p className="text-slate-300 text-center leading-relaxed max-w-3xl mx-auto mb-4">
+            Don't have crypto? No problem! You can participate in our DAO by purchasing clothing and merchandise
+            from our shop. For every £1 you spend, you earn 1 $FGBNDT token, which gives you voting power in the DAO.
+          </p>
           <p className="text-slate-300 text-center leading-relaxed max-w-3xl mx-auto">
-            Token-weighted voting aligns decision-making power with investment and commitment to the DAO.
-            Members who purchase more products earn more tokens, demonstrating their support for our
-            Alzheimer's and Dementia charity mission. This system ensures that those most invested in
-            our cause have proportional influence over how funds are allocated and what projects we pursue.
+            This system allows non-crypto users to support our Alzheimer's and Dementia charity mission while
+            gaining a voice in how funds are allocated. Buy merchandise you love, earn tokens, and help decide
+            which projects we pursue—all without needing a cryptocurrency wallet or technical knowledge.
           </p>
         </div>
       </div>
