@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase, type Product, type DAOMember, type CartItem } from '../lib/supabase';
 import { ProductCard } from './ProductCard';
 import { ShoppingCart } from './ShoppingCart';
-import { ShoppingBag, Filter } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 
 interface ShopProps {
   currentMember: DAOMember | null;
@@ -11,18 +11,8 @@ interface ShopProps {
 export function Shop({ currentMember }: ShopProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showCart, setShowCart] = useState(false);
   const [loading, setLoading] = useState(true);
-
-  const categories = [
-    { value: 'all', label: 'All Products' },
-    { value: 'tshirt', label: 'T-Shirts' },
-    { value: 'hoodie', label: 'Hoodies' },
-    { value: 'jacket', label: 'Jackets' },
-    { value: 'pants', label: 'Pants' },
-    { value: 'accessories', label: 'Accessories' },
-  ];
 
   useEffect(() => {
     fetchProducts();
@@ -82,11 +72,6 @@ export function Shop({ currentMember }: ShopProps) {
     setCart([]);
   };
 
-  const filteredProducts =
-    selectedCategory === 'all'
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
-
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   if (loading) {
@@ -103,7 +88,7 @@ export function Shop({ currentMember }: ShopProps) {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Forgetful Bandits Shop</h1>
-            <p className="text-slate-400">Earn $FGB tokens with every purchase</p>
+            <p className="text-slate-400">Earn $FGBNDT tokens with every purchase - £1 = 1 token</p>
           </div>
 
           <button
@@ -120,30 +105,8 @@ export function Shop({ currentMember }: ShopProps) {
           </button>
         </div>
 
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <Filter size={20} className="text-slate-400" />
-            <span className="text-slate-300 font-semibold">Filter by category:</span>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category.value}
-                onClick={() => setSelectedCategory(category.value)}
-                className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
-                  selectedCategory === category.value
-                    ? 'bg-pink-600 text-white'
-                    : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
-                }`}
-              >
-                {category.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -152,10 +115,11 @@ export function Shop({ currentMember }: ShopProps) {
           ))}
         </div>
 
-        {filteredProducts.length === 0 && (
+        {products.length === 0 && (
           <div className="bg-slate-800 rounded-lg p-12 text-center border border-slate-700">
             <ShoppingBag className="mx-auto mb-4 text-slate-600" size={48} />
-            <p className="text-slate-400 text-lg">No products found</p>
+            <p className="text-slate-400 text-lg">No products available yet</p>
+            <p className="text-slate-500 text-sm mt-2">Check back soon for new items!</p>
           </div>
         )}
       </div>

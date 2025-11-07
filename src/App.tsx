@@ -5,11 +5,13 @@ import { Shop } from './components/Shop';
 import { OrderHistory } from './components/OrderHistory';
 import { Login } from './components/Login';
 import { Manifesto } from './components/Manifesto';
-import { Vote, ShoppingBag, Package, Coins, LogOut, User, ScrollText, Wallet } from 'lucide-react';
+import { AdminPanel } from './components/AdminPanel';
+import { HowVotingWorks } from './components/HowVotingWorks';
+import { Vote, ShoppingBag, Package, Coins, LogOut, User, ScrollText, Wallet, Settings, Info } from 'lucide-react';
 
 function AppContent() {
   const { currentMember, isLoading, logout, refreshMember } = useAuth();
-  const [activeView, setActiveView] = useState<'shop' | 'manifesto' | 'dao' | 'orders'>('shop');
+  const [activeView, setActiveView] = useState<'shop' | 'manifesto' | 'dao' | 'orders' | 'admin' | 'how-voting'>('shop');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
   const [metaMaskAddress, setMetaMaskAddress] = useState<string | null>(null);
@@ -64,114 +66,133 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <nav className="bg-slate-900 border-b border-pink-900/50">
+      <nav className="bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-12">
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <img src="/4GB-SYM-LOGO.png" alt="Forgetful Bandits" className="w-10 h-10" />
-                <span className="text-white font-bold text-xl">Forgetful Bandits</span>
+                <img src="/4GB-SYM-LOGO.png" alt="Forgetful Bandits" className="w-8 h-8" />
+                <span className="text-slate-900 font-bold text-lg">Forgetful Bandits</span>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-1">
                 <button
                   onClick={() => setActiveView('shop')}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
                     activeView === 'shop'
                       ? 'bg-pink-600 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
-                  <ShoppingBag size={18} />
+                  <ShoppingBag size={16} />
                   Shop
                 </button>
                 <button
                   onClick={() => setActiveView('manifesto')}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
                     activeView === 'manifesto'
                       ? 'bg-pink-600 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
-                  <ScrollText size={18} />
+                  <ScrollText size={16} />
                   Manifesto
                 </button>
                 <button
-                  onClick={() => setActiveView('dao')}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 ${
-                    activeView === 'dao'
+                  onClick={() => setActiveView('how-voting')}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                    activeView === 'how-voting'
                       ? 'bg-pink-600 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
-                  <Vote size={18} />
+                  <Info size={16} />
+                  How Voting Works
+                </button>
+                <button
+                  onClick={() => setActiveView('dao')}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                    activeView === 'dao'
+                      ? 'bg-pink-600 text-white'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
+                >
+                  <Vote size={16} />
                   Governance
                 </button>
                 <button
                   onClick={() => setActiveView('orders')}
-                  className={`px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
                     activeView === 'orders'
                       ? 'bg-pink-600 text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
-                  <Package size={18} />
-                  My Orders
+                  <Package size={16} />
+                  Orders
+                </button>
+                <button
+                  onClick={() => setActiveView('admin')}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                    activeView === 'admin'
+                      ? 'bg-pink-600 text-white'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
+                >
+                  <Settings size={16} />
+                  Admin
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
-              <div className={`px-4 py-2 rounded-lg border ${
+            <div className="flex items-center gap-3">
+              <div className={`px-3 py-1 rounded-lg border text-xs ${
                 isMetaMaskConnected
-                  ? 'bg-green-900/30 border-green-700/50'
-                  : 'bg-slate-800 border-slate-700'
+                  ? 'bg-green-50 border-green-300'
+                  : 'bg-slate-100 border-slate-300'
               }`}>
                 <div className="flex items-center gap-2">
-                  <Wallet size={18} className={isMetaMaskConnected ? 'text-green-400' : 'text-slate-400'} />
+                  <Wallet size={14} className={isMetaMaskConnected ? 'text-green-600' : 'text-slate-400'} />
                   {isMetaMaskConnected && metaMaskAddress ? (
-                    <span className="text-white text-sm font-mono">
+                    <span className="text-slate-900 font-mono">
                       {metaMaskAddress.slice(0, 6)}...{metaMaskAddress.slice(-4)}
                     </span>
                   ) : (
-                    <span className="text-slate-400 text-sm">Not Connected</span>
+                    <span className="text-slate-500">Not Connected</span>
                   )}
                 </div>
               </div>
-              <div className="bg-slate-800 px-4 py-2 rounded-lg border border-pink-900/50">
+              <div className="bg-pink-50 px-3 py-1 rounded-lg border border-pink-200">
                 <div className="flex items-center gap-2">
-                  <Coins size={18} className="text-pink-500" />
-                  <span className="text-white font-semibold">
+                  <Coins size={14} className="text-pink-600" />
+                  <span className="text-slate-900 font-semibold text-sm">
                     {currentMember.token_balance.toLocaleString()}
                   </span>
-                  <span className="text-slate-400 text-sm">$FGB</span>
+                  <span className="text-slate-600 text-xs">$FGBNDT</span>
                 </div>
               </div>
 
               <div className="relative">
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-lg border border-slate-700 hover:border-slate-600 transition-colors"
+                  className="flex items-center gap-2 bg-slate-100 px-3 py-1 rounded-lg border border-slate-300 hover:border-slate-400 transition-colors"
                 >
-                  <User size={20} className="text-slate-400" />
+                  <User size={16} className="text-slate-600" />
                   <div className="text-left">
-                    <p className="text-white font-semibold text-sm">{currentMember.name || 'Member'}</p>
-                    <p className="text-slate-400 text-xs font-mono">
-                      {currentMember.wallet_address.slice(0, 10)}...
-                    </p>
+                    <p className="text-slate-900 font-semibold text-xs">{currentMember.name || 'Member'}</p>
                   </div>
                 </button>
 
                 {showUserMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-slate-800 rounded-lg border border-slate-700 shadow-xl z-50">
+                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg border border-slate-300 shadow-lg z-50">
                     <button
                       onClick={() => {
                         logout();
                         setShowUserMenu(false);
                       }}
-                      className="w-full px-4 py-3 text-left text-red-400 hover:bg-slate-700 rounded-lg transition-colors flex items-center gap-2"
+                      className="w-full px-3 py-2 text-left text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2 text-sm"
                     >
-                      <LogOut size={18} />
+                      <LogOut size={14} />
                       Logout
                     </button>
                   </div>
@@ -185,6 +206,7 @@ function AppContent() {
       <div className="max-w-7xl mx-auto">
         {activeView === 'shop' && <Shop currentMember={currentMember} />}
         {activeView === 'manifesto' && <Manifesto />}
+        {activeView === 'how-voting' && <HowVotingWorks />}
         {activeView === 'dao' && <Dashboard currentMember={currentMember} onUpdateMember={refreshMember} />}
         {activeView === 'orders' && (
           <div className="px-4 py-8">
@@ -192,6 +214,7 @@ function AppContent() {
             <OrderHistory currentMember={currentMember} />
           </div>
         )}
+        {activeView === 'admin' && <AdminPanel />}
       </div>
     </div>
   );
