@@ -7,11 +7,12 @@ import { Login } from './components/Login';
 import { Manifesto } from './components/Manifesto';
 import { AdminPanel } from './components/AdminPanel';
 import { HowVotingWorks } from './components/HowVotingWorks';
-import { Vote, ShoppingBag, Package, Coins, LogOut, User, ScrollText, Wallet, Settings, Info, ChevronDown, UserCircle } from 'lucide-react';
+import { Homepage } from './components/Homepage';
+import { Vote, ShoppingBag, Package, Coins, LogOut, User, ScrollText, Wallet, Settings, Info, ChevronDown, UserCircle, Home } from 'lucide-react';
 
 function AppContent() {
   const { currentMember, isLoading, logout, refreshMember } = useAuth();
-  const [activeView, setActiveView] = useState<'shop' | 'manifesto' | 'dao' | 'orders' | 'admin' | 'how-voting'>('shop');
+  const [activeView, setActiveView] = useState<'home' | 'shop' | 'manifesto' | 'dao' | 'orders' | 'admin' | 'how-voting'>('home');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showMembershipMenu, setShowMembershipMenu] = useState(false);
   const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
@@ -55,32 +56,44 @@ function AppContent() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-white text-xl">Loading...</div>
       </div>
     );
   }
 
-  const isPublicView = activeView === 'shop' || activeView === 'manifesto';
+  const showNav = activeView !== 'home';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <nav className="bg-white border-b border-slate-200 shadow-sm">
+    <div className="min-h-screen bg-black">
+      {showNav && (
+      <nav className="bg-black border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-12">
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
                 <img src="/4GB-SYM-LOGO.png" alt="Forgetful Bandits" className="w-8 h-8" />
-                <span className="text-slate-900 font-bold text-lg">Forgetful Bandits</span>
+                <span className="text-white font-bold text-lg">Forgetful Bandits</span>
               </div>
 
               <div className="flex gap-1">
                 <button
+                  onClick={() => setActiveView('home')}
+                  className={`px-3 py-1.5 text-sm font-semibold transition-colors flex items-center gap-2 ${
+                    activeView === 'home'
+                      ? 'bg-white text-black'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  <Home size={16} />
+                  Home
+                </button>
+                <button
                   onClick={() => setActiveView('shop')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-1.5 text-sm font-semibold transition-colors flex items-center gap-2 ${
                     activeView === 'shop'
-                      ? 'bg-pink-600 text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                      ? 'bg-white text-black'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   <ShoppingBag size={16} />
@@ -88,10 +101,10 @@ function AppContent() {
                 </button>
                 <button
                   onClick={() => setActiveView('manifesto')}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                  className={`px-3 py-1.5 text-sm font-semibold transition-colors flex items-center gap-2 ${
                     activeView === 'manifesto'
-                      ? 'bg-pink-600 text-white'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                      ? 'bg-white text-black'
+                      : 'text-white/70 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   <ScrollText size={16} />
@@ -102,10 +115,10 @@ function AppContent() {
                   <div className="relative">
                     <button
                       onClick={() => setShowMembershipMenu(!showMembershipMenu)}
-                      className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 ${
+                      className={`px-3 py-1.5 text-sm font-semibold transition-colors flex items-center gap-2 ${
                         ['how-voting', 'dao', 'orders', 'admin'].includes(activeView)
-                          ? 'bg-pink-600 text-white'
-                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                          ? 'bg-white text-black'
+                          : 'text-white/70 hover:text-white hover:bg-white/10'
                       }`}
                     >
                       <UserCircle size={16} />
@@ -114,13 +127,13 @@ function AppContent() {
                     </button>
 
                     {showMembershipMenu && (
-                      <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg border border-slate-300 shadow-lg z-50">
+                      <div className="absolute left-0 mt-2 w-48 bg-black border border-white/20 shadow-lg z-50">
                         <button
                           onClick={() => {
                             setActiveView('how-voting');
                             setShowMembershipMenu(false);
                           }}
-                          className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm rounded-t-lg"
+                          className="w-full px-4 py-2 text-left text-white/70 hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2 text-sm"
                         >
                           <Info size={16} />
                           How Voting Works
@@ -130,7 +143,7 @@ function AppContent() {
                             setActiveView('dao');
                             setShowMembershipMenu(false);
                           }}
-                          className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm"
+                          className="w-full px-4 py-2 text-left text-white/70 hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2 text-sm"
                         >
                           <Vote size={16} />
                           Governance
@@ -140,7 +153,7 @@ function AppContent() {
                             setActiveView('orders');
                             setShowMembershipMenu(false);
                           }}
-                          className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm"
+                          className="w-full px-4 py-2 text-left text-white/70 hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2 text-sm"
                         >
                           <Package size={16} />
                           My Orders
@@ -150,7 +163,7 @@ function AppContent() {
                             setActiveView('admin');
                             setShowMembershipMenu(false);
                           }}
-                          className="w-full px-4 py-2 text-left text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-2 text-sm rounded-b-lg"
+                          className="w-full px-4 py-2 text-left text-white/70 hover:bg-white/10 hover:text-white transition-colors flex items-center gap-2 text-sm"
                         >
                           <Settings size={16} />
                           Admin Panel
@@ -165,51 +178,51 @@ function AppContent() {
             <div className="flex items-center gap-3">
               {currentMember ? (
                 <>
-                  <div className={`px-3 py-1 rounded-lg border text-xs ${
+                  <div className={`px-3 py-1 border text-xs ${
                     isMetaMaskConnected
-                      ? 'bg-green-50 border-green-300'
-                      : 'bg-slate-100 border-slate-300'
+                      ? 'bg-white/10 border-white/20'
+                      : 'bg-white/5 border-white/10'
                   }`}>
                     <div className="flex items-center gap-2">
-                      <Wallet size={14} className={isMetaMaskConnected ? 'text-green-600' : 'text-slate-400'} />
+                      <Wallet size={14} className={isMetaMaskConnected ? 'text-white' : 'text-white/40'} />
                       {isMetaMaskConnected && metaMaskAddress ? (
-                        <span className="text-slate-900 font-mono">
+                        <span className="text-white font-mono">
                           {metaMaskAddress.slice(0, 6)}...{metaMaskAddress.slice(-4)}
                         </span>
                       ) : (
-                        <span className="text-slate-500">Not Connected</span>
+                        <span className="text-white/50">Not Connected</span>
                       )}
                     </div>
                   </div>
-                  <div className="bg-pink-50 px-3 py-1 rounded-lg border border-pink-200">
+                  <div className="bg-white/10 px-3 py-1 border border-white/20">
                     <div className="flex items-center gap-2">
-                      <Coins size={14} className="text-pink-600" />
-                      <span className="text-slate-900 font-semibold text-sm">
+                      <Coins size={14} className="text-white" />
+                      <span className="text-white font-semibold text-sm">
                         {currentMember.token_balance.toLocaleString()}
                       </span>
-                      <span className="text-slate-600 text-xs">$FGBNDT</span>
+                      <span className="text-white/60 text-xs">$FGBNDT</span>
                     </div>
                   </div>
 
                   <div className="relative">
                     <button
                       onClick={() => setShowUserMenu(!showUserMenu)}
-                      className="flex items-center gap-2 bg-slate-100 px-3 py-1 rounded-lg border border-slate-300 hover:border-slate-400 transition-colors"
+                      className="flex items-center gap-2 bg-white/10 px-3 py-1 border border-white/20 hover:border-white/40 transition-colors"
                     >
-                      <User size={16} className="text-slate-600" />
+                      <User size={16} className="text-white" />
                       <div className="text-left">
-                        <p className="text-slate-900 font-semibold text-xs">{currentMember.name || 'Member'}</p>
+                        <p className="text-white font-semibold text-xs">{currentMember.name || 'Member'}</p>
                       </div>
                     </button>
 
                     {showUserMenu && (
-                      <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg border border-slate-300 shadow-lg z-50">
+                      <div className="absolute right-0 mt-2 w-40 bg-black border border-white/20 shadow-lg z-50">
                         <button
                           onClick={() => {
                             logout();
                             setShowUserMenu(false);
                           }}
-                          className="w-full px-3 py-2 text-left text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2 text-sm"
+                          className="w-full px-3 py-2 text-left text-white hover:bg-white/10 transition-colors flex items-center gap-2 text-sm"
                         >
                           <LogOut size={14} />
                           Logout
@@ -221,7 +234,7 @@ function AppContent() {
               ) : (
                 <button
                   onClick={() => setActiveView('shop')}
-                  className="px-4 py-1.5 bg-pink-600 text-white rounded-lg text-sm font-semibold hover:bg-pink-700 transition-colors"
+                  className="px-4 py-1.5 bg-white text-black text-sm font-semibold hover:bg-white/90 transition-colors"
                 >
                   Sign In
                 </button>
@@ -230,8 +243,15 @@ function AppContent() {
           </div>
         </div>
       </nav>
+      )}
 
-      <div className="max-w-7xl mx-auto">
+      <div className={activeView === 'home' ? '' : 'max-w-7xl mx-auto'}>
+        {activeView === 'home' && (
+          <Homepage
+            onNavigate={(view) => setActiveView(view)}
+            onSignIn={() => setActiveView('shop')}
+          />
+        )}
         {activeView === 'shop' && <Shop currentMember={currentMember} />}
         {activeView === 'manifesto' && <Manifesto />}
         {activeView === 'how-voting' && (
