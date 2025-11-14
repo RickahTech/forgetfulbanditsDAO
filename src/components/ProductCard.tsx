@@ -17,8 +17,8 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-slate-800 rounded-lg border border-pink-900/50 overflow-hidden hover:border-pink-700/50 transition-colors">
-      <div className="aspect-square bg-slate-900 overflow-hidden">
+    <div className="bg-white border border-black/10 overflow-hidden hover:border-black/30 transition-colors">
+      <div className="aspect-square bg-black/5 overflow-hidden">
         <img
           src={product.image_url}
           alt={product.name}
@@ -28,37 +28,37 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
 
       <div className="p-6">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="text-xl font-bold text-white">{product.name}</h3>
-          <span className="text-2xl font-bold text-green-400">${product.price}</span>
+          <h3 className="text-xl font-bold text-black">{product.name}</h3>
+          <span className="text-2xl font-bold text-black">${product.price}</span>
         </div>
 
-        <p className="text-slate-400 text-sm mb-4 leading-relaxed">{product.description}</p>
+        <p className="text-black/60 text-sm mb-4 leading-relaxed">{product.description}</p>
 
         <div className="flex items-center gap-4 mb-4">
-          <div className="flex items-center gap-2 bg-pink-900 bg-opacity-30 px-3 py-1 rounded-full border border-pink-700">
-            <Coins size={16} className="text-pink-500" />
-            <span className="text-pink-400 font-semibold text-sm">
+          <div className="flex items-center gap-2 bg-black/5 px-3 py-1 border border-black/20">
+            <Coins size={16} className="text-black" />
+            <span className="text-black font-semibold text-sm">
               +{product.tokens_reward} $FGB
             </span>
           </div>
 
-          <div className="flex items-center gap-2 text-slate-400 text-sm">
+          <div className="flex items-center gap-2 text-black/60 text-sm">
             <Package size={16} />
             <span>{product.stock_quantity} in stock</span>
           </div>
         </div>
 
         <div className="mb-4">
-          <label className="block text-slate-300 text-sm font-semibold mb-2">Size</label>
+          <label className="block text-black text-sm font-semibold mb-2">Size</label>
           <div className="flex gap-2">
             {product.sizes_available.map((size) => (
               <button
                 key={size}
                 onClick={() => setSelectedSize(size)}
-                className={`flex-1 py-2 rounded-lg font-semibold transition-colors ${
+                className={`flex-1 py-2 font-semibold transition-colors ${
                   selectedSize === size
-                    ? 'bg-pink-600 text-white'
-                    : 'bg-slate-700 text-slate-400 hover:bg-slate-600'
+                    ? 'bg-black text-white'
+                    : 'bg-white border border-black/20 text-black hover:bg-black/5'
                 }`}
               >
                 {size}
@@ -68,21 +68,21 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         </div>
 
         <div className="mb-4">
-          <label className="block text-slate-300 text-sm font-semibold mb-2">Quantity</label>
+          <label className="block text-black text-sm font-semibold mb-2">Quantity</label>
           <input
             type="number"
             min="1"
             max={product.stock_quantity}
             value={quantity}
             onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-            className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-pink-500"
+            className="w-full bg-white border border-black/20 px-4 py-2 text-black focus:outline-none focus:border-black"
           />
         </div>
 
         <button
           onClick={handleAddToCart}
           disabled={product.stock_quantity === 0}
-          className="w-full bg-pink-600 hover:bg-pink-700 disabled:bg-slate-700 disabled:text-slate-500 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-black hover:bg-black/90 disabled:bg-black/20 disabled:text-black/40 text-white py-3 font-semibold transition-colors flex items-center justify-center gap-2"
         >
           <ShoppingCart size={20} />
           {product.stock_quantity > 0 ? 'Add to Cart' : 'Out of Stock'}

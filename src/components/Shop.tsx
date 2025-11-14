@@ -76,29 +76,29 @@ export function Shop({ currentMember }: ShopProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading shop...</div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-black text-xl">Loading shop...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Forgetful Bandits Shop</h1>
-            <p className="text-slate-400">Earn $FGBNDT tokens with every purchase - £1 = 1 token</p>
+            <h1 className="text-4xl font-bold text-black mb-2">Forgetful Bandits Shop</h1>
+            <p className="text-black/60">Earn $FGBNDT tokens with every purchase - £1 = 1 token</p>
           </div>
 
           <button
             onClick={() => setShowCart(true)}
-            className="relative bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+            className="relative bg-black hover:bg-black/90 text-white px-6 py-3 font-semibold transition-colors flex items-center gap-2"
           >
             <ShoppingBag size={20} />
             Cart
             {cartItemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-pink-900 border-2 border-pink-400 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-white text-black text-xs font-bold w-6 h-6 flex items-center justify-center border-2 border-black">
                 {cartItemCount}
               </span>
             )}
@@ -116,10 +116,10 @@ export function Shop({ currentMember }: ShopProps) {
         </div>
 
         {products.length === 0 && (
-          <div className="bg-slate-800 rounded-lg p-12 text-center border border-slate-700">
-            <ShoppingBag className="mx-auto mb-4 text-slate-600" size={48} />
-            <p className="text-slate-400 text-lg">No products available yet</p>
-            <p className="text-slate-500 text-sm mt-2">Check back soon for new items!</p>
+          <div className="bg-white p-12 text-center border border-black/10">
+            <ShoppingBag className="mx-auto mb-4 text-black/30" size={48} />
+            <p className="text-black/70 text-lg">No products available yet</p>
+            <p className="text-black/50 text-sm mt-2">Check back soon for new items!</p>
           </div>
         )}
       </div>
